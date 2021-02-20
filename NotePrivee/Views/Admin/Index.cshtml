@@ -1,0 +1,119 @@
+﻿@model NotePrivee.Models.User
+
+@{
+    ViewData["Title"] = "Administration";
+
+    List<Note> Notes = (List<Note>)ViewData["Notes"];
+    List<User> Users = (List<User>)ViewData["Users"];
+}
+
+@section Head {
+    <link rel="stylesheet" href="~/lib/Chart.js/Chart.min.css">
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-7">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <h5 class="card-header">Base de données (@Notes.Count() notes)</h5>
+                    <div class="card-body">
+                        <div>
+                        <canvas id="lineChart"></canvas>
+                        </div>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalClearDB">
+                            Vider
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="card">
+            <h5 class="card-header">Utilisateurs</h5>
+            <div class="card-body">
+                <table class="table table-bordered table-striped table-hover table-sm">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Id</th>
+                            <th>Username</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Users)
+                        {
+                            <tr>
+                                <td>
+                                    @user.Id
+                                </td>
+                                <td>
+                                    @user.Username
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modalEditUser_@user.Id">
+                                        Editer
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modalDeleteUser_@user.Id">
+                                        Supprimer
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUserCreate">
+                    Ajouter
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@foreach (User user in Users)
+{
+    <!-- Modal -->
+    <div id="modalEditUser_@user.Id" class="modal fade" role="dialog">
+        @await Html.PartialAsync("Users/Edit", user)
+    </div>
+
+    <!-- Modal -->
+    <div id="modalDeleteUser_@user.Id" class="modal fade" role="dialog">
+        @await Html.PartialAsync("Users/Delete", user)
+    </div>
+}
+
+<!-- Modal -->
+<div id="modalUserCreate" class="modal fade" role="dialog">
+    @await Html.PartialAsync("Users/Create")
+</div>
+
+<!-- Modal -->
+<div id="modalClearDB" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Clear</h4>
+            </div>
+            <form asp-action="clear">
+                <div class="modal-body">
+                    <p>Souhaitez vous vraiment vider la bdd ?</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Vider" class="btn btn-danger" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@{ChartJSCore.Models.Chart chart = (ChartJSCore.Models.Chart)ViewData["chart"]; }
+@section Scripts {
+    <script src="~/lib/Chart.js/Chart.min.js"></script>
+
+    <script>
+        @Html.Raw(chart.CreateChartCode("lineChart"));
+    </script>
+}

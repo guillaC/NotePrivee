@@ -1,0 +1,96 @@
+﻿@model NotePrivee.Models.Note
+
+@{
+    ViewData["Title"] = "Creation";
+    string defaultExpirationDate = DateTime.Now.AddDays(7).ToString("yyyy-MM-dd") + "T12:00";
+    string currentDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").Replace(' ', 'T');
+}
+
+@section Head {
+    <link rel="stylesheet" href="~/lib/simplemde/simplemde.min.css">
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <textarea asp-for="Contenu" id="mdEditor" class="form-control" /></textarea>
+                <span asp-validation-for="Contenu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="text-right mb-3">
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNoteCreate">
+                        <i class="fa fa-cogs"></i>
+                    </button>
+                    <input type="submit" value="Créer" class="btn btn-primary" />
+                </div>
+            </div>
+
+            <div id="modalNoteCreate" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title"><i class="fa fa-cogs"></i> Configurations</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label asp-for="DateExpiration" class="control-label"></label>
+                                <input value="@defaultExpirationDate" asp-for="DateExpiration" min="@currentDate" class="form-control" />
+                            
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="NombreVue" class="control-label"></label>
+                                <input asp-for="NombreVue" value="1" min="1" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div id="modalUrl" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><i class="fa fa-save"></i> Note enregistrée !</h4>
+            </div>
+            <div class="modal-body">
+                <p>Vous pouvez partager ce lien à votre interlocuteur : @ViewData["Url"]</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="navigator.clipboard.writeText('@ViewData["Url"]');" data-dismiss="modal">Copier et fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/simplemde/simplemde.min.js"></script>
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        if (ViewData.ContainsKey("Url"))
+        {
+            <script>
+                $('#modalUrl').modal();
+            </script>
+        }
+    }
+
+    <script>
+        var simplemde = new SimpleMDE(
+            {
+                element: document.getElementById("mdEditor"),
+                spellChecker: false
+            }
+        );
+        hljs.initHighlightingOnLoad();
+    </script>
+}

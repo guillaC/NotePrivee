@@ -1,0 +1,22 @@
+﻿@model NotePrivee.Models.User
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <form asp-action="Delete">
+            <div class="modal-header">
+                <h4 class="modal-title">Suppression d'un utilisateur</h4>
+            </div>
+            <div class="modal-body">
+                <p>Souhaitez vous vraiment supprimer l'utilisateur @Html.DisplayFor(model => model.Username) ?</p>
+                <input type="hidden" asp-for="Id" />
+            </div>
+            <div class="modal-footer">
+                <input type="submit" value="Supprimer" class="btn btn-danger" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

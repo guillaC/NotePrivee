@@ -1,0 +1,32 @@
+﻿@model NotePrivee.Models.User
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Edition de lutilisateur @Model.Username</h4>
+        </div>
+        <form asp-action="Edit">
+            <div class="modal-body">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="@Model.Username" class="control-label"></label>
+                    <input asp-for="@Model.Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Password" class="control-label"></label>
+                    <input asp-for="@Model.Password" value="" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="submit" value="Enregistrer" class="btn btn-info" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
