@@ -1,5 +1,4 @@
-# privateNote
-Simple, clean self destructing note site
+# NotePrivée
 
 ## Features
 - [x] Self destructing notes
@@ -8,8 +7,8 @@ Simple, clean self destructing note site
 - [x] API
 
 ## Screenshots
-![screenshot]()
-![screenshot]()
+![screenshot](https://github.com/guillaC/NotePrivee/blob/main/Images/Cycle%20de%20vie.png?raw=true)
+![screenshot](https://github.com/guillaC/NotePrivee/blob/main/Images/Admin.png)
 
 ## Configuration
 ### Database
@@ -41,8 +40,6 @@ COMMIT;
 ## API
 ### Create one note
 #### Request
-`POST /api/Notes`
-
 `curl -X POST "https://localhost:5001/api/Notes" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{  \"contenu\": \"hey\",  \"nombreVue\": 1,  \"dateExpiration\": \"2021-02-20T17:35:12.035Z\"}"`
 ```json
 {
@@ -62,8 +59,6 @@ COMMIT;
 
 ### Read one note
 #### Request
-`GET /api/Notes`
-
 `curl -X GET "https://localhost:5001/api/Notes?id=49&key=1eccea57eae34e7c8a418347da4d2a" -H  "accept: text/plain"`
 `https://localhost:5001/api/Notes?id=49&key=1eccea57eae34e7c8a418347da4d2a`
 ##### Parameters
@@ -82,16 +77,16 @@ COMMIT;
 Tests are located in "NotePrivee.Test" directory. They are developed with XUnit Framework.
 
 ## Authors
-[Guillaume](https://github.com/guillaC), [Gaëtan](https://github.com/), [Adrien](https://github.com/)
+[Guillaume](https://github.com/guillaC), [Gaëtan](https://github.com/gashtan), [Adrien](https://github.com/AdriPhilip)
 
 ## Built With
 - ASP Net Core 5.0
-- [Pomelo.EntityFrameworkCore.MySql](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql) - Entity Framework Core provider for MySQL compatible databases.
 - [ChartJSCore](https://github.com/mattosaurus/ChartJSCore) -  library for generating Chart.js code.
 - [HtmlSanitizer](https://github.com/mganss/HtmlSanitizer) - For cleaning HTML fragments and documents from constructs that can lead to XSS attacks.
 - [SimpleAES](https://github.com/jonjomckay/dotnet-simpleaes) - Wrapper to encrypt and decrypt using AES256
 - [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) - Middleware to expose Swagger JSON endpoints from APIs built on ASP.NET Core
 - [Westwind.AspNetCore.Markdown](https://github.com/RickStrahl/Westwind.AspNetCore.Markdown) - For Markdown support 
+- [Pomelo.EntityFrameworkCore.MySql](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql) - Entity Framework Core provider for MySQL compatible databases.
 ---
 - [Bootstrap](https://getbootstrap.com/)
 - [Jquery](https://jquery.com/)
