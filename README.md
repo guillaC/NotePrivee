@@ -3,7 +3,9 @@
 ## Features
 - [x] Self destructing notes
 - [x] AES256 encryption
-- [x] Administration Panel
+- [X] Expiration times
+- [X] Markdown support, syntax highlighting
+- [x] Admin Panel
 - [x] API
 
 ## Screenshots
@@ -81,7 +83,7 @@ Tests are located in "NotePrivee.Test" directory. They are developed with XUnit 
 
 ## Built With
 - ASP Net Core 5.0
-- [ChartJSCore](https://github.com/mattosaurus/ChartJSCore) -  library for generating Chart.js code.
+- [ChartJSCore](https://github.com/mattosaurus/ChartJSCore) -  Library for generating Chart.js code.
 - [HtmlSanitizer](https://github.com/mganss/HtmlSanitizer) - For cleaning HTML fragments and documents from constructs that can lead to XSS attacks.
 - [SimpleAES](https://github.com/jonjomckay/dotnet-simpleaes) - Wrapper to encrypt and decrypt using AES256
 - [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) - Middleware to expose Swagger JSON endpoints from APIs built on ASP.NET Core
