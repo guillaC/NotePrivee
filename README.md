@@ -10,7 +10,7 @@
 
 ## Screenshots
 ![screenshot](https://github.com/guillaC/NotePrivee/blob/main/Images/Cycle%20de%20vie.png?raw=true)
-![screenshot](https://github.com/guillaC/NotePrivee/blob/main/Images/Admin.png)
+![screenshot](https://github.com/guillaC/NotePrivee/blob/main/Images/AdminPanel.png)
 
 ## Configuration
 ### Database
