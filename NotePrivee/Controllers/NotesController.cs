@@ -35,12 +35,12 @@ namespace NotePrivee.Controllers
             }
 
             Note decipheredNote = new Note
-            {
-                Contenu = note.Contenu,
-                DateCreation = note.DateCreation,
-                DateExpiration = note.DateExpiration,
-                NombreVue = note.NombreVue - 1
-            };
+            (
+                Contenu: note.Contenu,
+                DateCreation: note.DateCreation,
+                DateExpiration: note.DateExpiration,
+                NombreVue: note.NombreVue - 1
+            );
 
             if (note.DateExpiration <= DateTime.Now)
             {
