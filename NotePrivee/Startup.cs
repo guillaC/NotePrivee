@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Westwind.AspNetCore.Markdown;
 using Microsoft.OpenApi.Models;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
-#pragma warning disable CS0618 // Le type ou le membre est obsolète
+#pragma warning disable CS0618 // Le type ou le membre est obsolï¿½te
 
 namespace NotePrivee
 {
@@ -34,7 +34,7 @@ namespace NotePrivee
             }
             else
             {
-                services.AddDbContext<notepriveeContext>(options => options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 21))));
+                services.AddDbContext<notepriveeContext>(options => options.UseMySql(connectionString, Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.21-mysql")));
                 services.AddMarkdown();
             }
 
@@ -51,7 +51,7 @@ namespace NotePrivee
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Note Privée API",
+                    Title = "Note Privï¿½e API",
                     Version = "v1"
                 });
             });
@@ -97,7 +97,7 @@ namespace NotePrivee
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Note Privée");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Note Privï¿½e");
             });
 
         }

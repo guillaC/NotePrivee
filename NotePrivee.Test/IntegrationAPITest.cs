@@ -34,14 +34,14 @@ namespace NotePrivee.Test
             output = testOutputHelper;
             dbContext = server.Host.Services.GetService(typeof(notepriveeContext)) as notepriveeContext;
             NoteKey = Guid.NewGuid().ToString().Replace("-", string.Empty).Substring(0, 30);
-            NoteContent = "note pour test intégration";
+            NoteContent = "note pour test intï¿½gration";
             Note nNotes = new Note { Contenu = SimpleAES.AES256.Encrypt(NoteContent, NoteKey) };
             dbContext.Notes.Add(nNotes);
             dbContext.SaveChanges();
             NoteId = nNotes.Id;
         }
 
-        [Fact(DisplayName = "Création d'une note")]
+        [Fact(DisplayName = "Crï¿½ation d'une note")]
         public async Task TestCreateNote()
         {
             Dictionary<String, String> jsonResult;
@@ -62,7 +62,7 @@ namespace NotePrivee.Test
             output.WriteLine("key: " + jsonResult["key"]);
         }
 
-        [Fact(DisplayName = "Récupération d'une note avec la mauvaise clé")]
+        [Fact(DisplayName = "Rï¿½cupï¿½ration d'une note avec la mauvaise clï¿½")]
         public async Task TestGetNoteByIdWrongKey()
         {
             var response = await client.GetAsync("/api/Notes?id=" + NoteId + "&key=123456");
@@ -70,7 +70,7 @@ namespace NotePrivee.Test
             Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
 
-        [Fact(DisplayName = "Récupération d'une note avec un ID érroné")]
+        [Fact(DisplayName = "Rï¿½cupï¿½ration d'une note avec un ID ï¿½rronï¿½")]
         public async Task TestGetNoteByWrongId()
         {
             var response = await client.GetAsync("/api/Notes?id=123456&key=123456");
@@ -78,7 +78,7 @@ namespace NotePrivee.Test
             Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
 
-        [Fact(DisplayName = "Récupération d'une note")]
+        [Fact(DisplayName = "Rï¿½cupï¿½ration d'une note")]
         public async Task TestGetNoteByIdKey()
         {
             Dictionary<String, String> jsonResult;

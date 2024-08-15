@@ -23,7 +23,7 @@ namespace NotePrivee
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySql("name=NoteBDD", Microsoft.EntityFrameworkCore.ServerVersion.FromString("8.0.18-mysql"));
+                optionsBuilder.UseMySql("name=NoteBDD", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.21-mysql"));
             }
         }
 

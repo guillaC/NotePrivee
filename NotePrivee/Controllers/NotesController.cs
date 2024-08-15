@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
+using Ganss.Xss;
 using Ganss.XSS;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -35,12 +36,12 @@ namespace NotePrivee.Controllers
             }
 
             Note decipheredNote = new Note
-            {
-                Contenu = note.Contenu,
-                DateCreation = note.DateCreation,
-                DateExpiration = note.DateExpiration,
-                NombreVue = note.NombreVue - 1
-            };
+            (
+                Contenu: note.Contenu,
+                DateCreation: note.DateCreation,
+                DateExpiration: note.DateExpiration,
+                NombreVue: note.NombreVue - 1
+            );
 
             if (note.DateExpiration <= DateTime.Now)
             {
